@@ -1,7 +1,15 @@
 import { createBrowserRouter } from "react-router";
+import App from "../App";
+import AllBooks from "../components/AllBooks";
 export const router = createBrowserRouter([
   {
     path: "/",
-    element: <div>Hello World</div>,
+    element: <App />,
+    children: [
+      {
+        path: "/",
+        element: <AllBooks />,
+      },
+    ],
   },
 ]);
