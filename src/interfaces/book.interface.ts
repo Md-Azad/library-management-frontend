@@ -4,7 +4,7 @@ export interface IBook {
   author: string;
   genre: string;
   isbn: string;
-  avilable: boolean;
+  avilable?: boolean;
   copies: number;
   description: string;
   createdAt?: Date;

@@ -15,7 +15,13 @@ const Navbar = () => {
         to="/books"
         className="text-white hover:text-yellow-400 block py-2 px-4 rounded transition"
       >
-        Books
+        AllBooks
+      </NavLink>
+      <NavLink
+        to="/create-book"
+        className="text-white hover:text-yellow-400 block py-2 px-4 rounded transition"
+      >
+        Add Book
       </NavLink>
     </div>
   );

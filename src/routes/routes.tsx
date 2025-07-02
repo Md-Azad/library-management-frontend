@@ -3,6 +3,7 @@ import App from "../App";
 import AllBooks from "../components/AllBooks";
 import BorrowForm from "../components/BorrowForm";
 import Details from "../components/Details";
+import CreateBook from "../components/CreateBook";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -19,6 +20,10 @@ export const router = createBrowserRouter([
       {
         path: "/books/:id",
         element: <Details />,
+      },
+      {
+        path: "/create-book",
+        element: <CreateBook />,
       },
     ],
   },

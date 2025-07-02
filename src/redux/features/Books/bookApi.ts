@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { Inputs } from "../../../interfaces/input.interface";
+import type { IBook } from "../../../interfaces/book.interface";
 
 export const bookApi = createApi({
   reducerPath: "bookApi",
@@ -13,6 +14,13 @@ export const bookApi = createApi({
     }),
     getBook: builder.query({
       query: (id) => `/books/${id}`,
+    }),
+    createBook: builder.mutation({
+      query: (payload: IBook) => ({
+        url: "/books",
+        method: "POST",
+        body: payload,
+      }),
     }),
     borroBook: builder.mutation({
       query: ({ id, payload }: { id: string; payload: Inputs }) => ({
@@ -31,5 +39,9 @@ export const bookApi = createApi({
   }),
 });
 
-export const { useGetBooksQuery, useBorroBookMutation, useGetBookQuery } =
-  bookApi;
+export const {
+  useGetBooksQuery,
+  useBorroBookMutation,
+  useGetBookQuery,
+  useCreateBookMutation,
+} = bookApi;
