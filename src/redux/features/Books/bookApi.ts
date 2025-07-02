@@ -22,6 +22,12 @@ export const bookApi = createApi({
         body: payload,
       }),
     }),
+    deleteBook: builder.mutation({
+      query: (id) => ({
+        url: `/books/${id}`,
+        method: "DELETE",
+      }),
+    }),
     borroBook: builder.mutation({
       query: ({ id, payload }: { id: string; payload: Inputs }) => ({
         url: `/borrow/${id}`,
@@ -44,4 +50,5 @@ export const {
   useBorroBookMutation,
   useGetBookQuery,
   useCreateBookMutation,
+  useDeleteBookMutation,
 } = bookApi;

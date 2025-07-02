@@ -1,11 +1,18 @@
 import { Link } from "react-router";
 import type { IBook } from "../interfaces/book.interface";
+import { useDeleteBookMutation } from "../redux/features/Books/bookApi";
 type BookRowProps = {
   book: IBook;
 };
 
 const BookCard: React.FC<BookRowProps> = ({ book }) => {
   const { title, author, genre, isbn, avilable, copies } = book;
+  const [deleteBook] = useDeleteBookMutation();
+
+  const handleDelete = async (id: string) => {
+    const result = await deleteBook(id);
+    console.log(result);
+  };
   return (
     <div className="card bg-gray-400 shadow-sm">
       <figure>
@@ -37,7 +44,12 @@ const BookCard: React.FC<BookRowProps> = ({ book }) => {
             Details
           </Link>
           <div className="badge badge-outline bg-yellow-500">Edit</div>
-          <div className="badge badge-outline bg-red-600">Delete</div>
+          <button
+            onClick={() => handleDelete(book._id as string)}
+            className="btn btn-sm bg-red-600"
+          >
+            Delete
+          </button>
         </div>
       </div>
     </div>
