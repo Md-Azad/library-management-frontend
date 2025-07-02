@@ -1,4 +1,5 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
+import type { Inputs } from "../../../interfaces/input.interface";
 
 export const bookApi = createApi({
   reducerPath: "bookApi",
@@ -10,13 +11,13 @@ export const bookApi = createApi({
     getBooks: builder.query({
       query: () => "/books",
     }),
-    // CreateEvent: builder.mutation({
-    //   query: (payload) => ({
-    //     url: `/events`,
-    //     method: "POST",
-    //     body: payload,
-    //   }),
-    // }),
+    borroBook: builder.mutation({
+      query: ({ id, payload }: { id: string; payload: Inputs }) => ({
+        url: `/borrow/${id}`,
+        method: "POST",
+        body: payload,
+      }),
+    }),
     // joinEvent: builder.mutation({
     //   query: ({ eventId, email }) => ({
     //     url: `/events/join/${eventId}`,
@@ -27,4 +28,4 @@ export const bookApi = createApi({
   }),
 });
 
-export const { useGetBooksQuery } = bookApi;
+export const { useGetBooksQuery, useBorroBookMutation } = bookApi;
