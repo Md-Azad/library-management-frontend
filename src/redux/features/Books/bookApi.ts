@@ -11,6 +11,9 @@ export const bookApi = createApi({
     getBooks: builder.query({
       query: () => "/books",
     }),
+    getBook: builder.query({
+      query: (id) => `/books/${id}`,
+    }),
     borroBook: builder.mutation({
       query: ({ id, payload }: { id: string; payload: Inputs }) => ({
         url: `/borrow/${id}`,
@@ -28,4 +31,5 @@ export const bookApi = createApi({
   }),
 });
 
-export const { useGetBooksQuery, useBorroBookMutation } = bookApi;
+export const { useGetBooksQuery, useBorroBookMutation, useGetBookQuery } =
+  bookApi;

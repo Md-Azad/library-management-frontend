@@ -30,7 +30,12 @@ const BookCard: React.FC<BookRowProps> = ({ book }) => {
           >
             Borrow
           </Link>
-          <div className="badge badge-outline bg-pink-900">Details</div>
+          <Link
+            to={`/books/${book._id}`}
+            className="badge badge-outline bg-pink-900"
+          >
+            Details
+          </Link>
           <div className="badge badge-outline bg-yellow-500">Edit</div>
           <div className="badge badge-outline bg-red-600">Delete</div>
         </div>
