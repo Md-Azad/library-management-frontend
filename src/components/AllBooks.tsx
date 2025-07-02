@@ -1,9 +1,11 @@
-import { useGetBooksQuery } from "../redux/features/Books/bookApi";
+import BookTable from "./BookTable";
 
 const AllBooks = () => {
-  const { data } = useGetBooksQuery(undefined);
-  console.log(data);
-  return <div>All books will be here.</div>;
+  return (
+    <div>
+      <BookTable />
+    </div>
+  );
 };
 
 export default AllBooks;
