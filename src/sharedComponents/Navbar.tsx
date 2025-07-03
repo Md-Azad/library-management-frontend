@@ -7,35 +7,57 @@ const Navbar = () => {
     <div className="flex">
       <NavLink
         to="/"
-        className="text-white hover:text-yellow-400 block py-2 px-4 rounded transition"
+        className={({ isActive }) =>
+          `block py-2 px-4 rounded transition text-white hover:text-black ${
+            isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
+          }`
+        }
       >
         Home
       </NavLink>
       <NavLink
         to="/books"
-        className="text-white hover:text-yellow-400 block py-2 px-4 rounded transition"
+        className={({ isActive }) =>
+          `block py-2 px-4 rounded transition text-white hover:text-black ${
+            isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
+          }`
+        }
       >
         AllBooks
       </NavLink>
       <NavLink
         to="/create-book"
-        className="text-white hover:text-yellow-400 block py-2 px-4 rounded transition"
+        className={({ isActive }) =>
+          `block py-2 px-4 rounded transition text-white hover:text-black ${
+            isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
+          }`
+        }
       >
         Add Book
+      </NavLink>
+      <NavLink
+        to="/borrow-summary"
+        className={({ isActive }) =>
+          `block py-2 px-4 rounded transition text-white hover:text-black ${
+            isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
+          }`
+        }
+      >
+        Borrow Summary
       </NavLink>
     </div>
   );
   return (
     <nav className="sticky top-0 z-50 bg-gray-500 bg-opacity-95 ">
-      <div className="max-w-7xl mx-auto px-4">
-        <div className="grid grid-cols-3 items-center h-16">
+      <div className="w-[95%] mx-auto px-4">
+        <div className="flex  items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
             <Link
               to="/"
               className="text-yellow-400 font-extrabold text-2xl md:text-3xl tracking-wide"
             >
-              LMS
+              Library Management
             </Link>
           </div>
 
