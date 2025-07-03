@@ -3,7 +3,7 @@
 A modern, full-featured Library Management System built with React, TypeScript, Vite, Tailwind CSS, DaisyUI, and Redux Toolkit Query.  
 Easily manage books, borrowing, and summaries with a beautiful and responsive UI.
 
-[🌐 Live Demo](https://library-management-frontend.vercel.app/)
+[🌐 Live Demo](https://library-management-frontend-mu.vercel.app)
 
 ---
 
