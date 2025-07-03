@@ -9,7 +9,7 @@ export const bookApi = createApi({
   tagTypes: ["createEvents"],
   endpoints: (builder) => ({
     getBooks: builder.query({
-      query: () => "/books",
+      query: ({ params }) => `/books${params ?? ""}`,
     }),
     getBook: builder.query({
       query: (id) => `/books/${id}`,

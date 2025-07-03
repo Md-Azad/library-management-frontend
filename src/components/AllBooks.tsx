@@ -3,7 +3,7 @@ import { useGetBooksQuery } from "../redux/features/Books/bookApi";
 import BookCard from "./BookCard";
 
 const AllBooks = () => {
-  const { data, isLoading } = useGetBooksQuery(undefined);
+  const { data, isLoading } = useGetBooksQuery({ params: undefined });
 
   if (isLoading) {
     return <h1>Loading...</h1>;

@@ -6,6 +6,7 @@ import Details from "../components/Details";
 import CreateBook from "../components/CreateBook";
 import BorrowSummary from "../components/BorrowSummary";
 import UpdateBook from "../components/UpdateBook";
+import Home from "../components/Home";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -13,7 +14,7 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "/",
-        element: <AllBooks />,
+        element: <Home />,
       },
       { path: "/books", element: <AllBooks /> },
       {

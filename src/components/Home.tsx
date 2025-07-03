@@ -1,0 +1,31 @@
+import type { IBook } from "../interfaces/book.interface";
+import { useGetBooksQuery } from "../redux/features/Books/bookApi";
+import Banner from "./Banner";
+import BookCard from "./BookCard";
+
+const Home = () => {
+  const { data, isLoading } = useGetBooksQuery({
+    params: "?sortBy=createdAt&sort=desc&limit=2",
+  });
+
+  if (isLoading) {
+    return <h1>Loading...</h1>;
+  }
+  return (
+    <div>
+      <Banner />
+      <h1 className="text-5xl text-pink-500 font-bold text-center">
+        New Books
+      </h1>
+      <div className="grid grid-cols-3 my-8 gap-4 mx-12">
+        {data &&
+          Array.isArray(data.data) &&
+          data.data.map((book: IBook) => (
+            <BookCard key={book._id} book={book} />
+          ))}
+      </div>
+    </div>
+  );
+};
+
+export default Home;
