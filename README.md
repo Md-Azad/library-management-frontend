@@ -25,7 +25,7 @@ Easily manage books, borrowing, and summaries with a beautiful and responsive UI
 1. **Clone the repository:**
 
    ```bash
-   git clone https://github.com/your-username/library-management-frontend.git
+   git clone https://github.com/Md-Azad/library-management-frontend.git
    cd library-management-frontend
    ```
 

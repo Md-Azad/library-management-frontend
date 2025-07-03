@@ -3,12 +3,13 @@ import { Link, NavLink } from "react-router";
 
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
+
   const navLinks = (
-    <div className="flex">
+    <>
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `block py-2 px-4 rounded transition text-white hover:text-black ${
+          `block py-2 px-4 rounded transition text-white hover:text-yellow-400 ${
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }
@@ -18,7 +19,7 @@ const Navbar = () => {
       <NavLink
         to="/books"
         className={({ isActive }) =>
-          `block py-2 px-4 rounded transition text-white hover:text-black ${
+          `block py-2 px-4 rounded transition text-white hover:text-yellow-400 ${
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }
@@ -28,7 +29,7 @@ const Navbar = () => {
       <NavLink
         to="/create-book"
         className={({ isActive }) =>
-          `block py-2 px-4 rounded transition text-white hover:text-black ${
+          `block py-2 px-4 rounded transition text-white hover:text-yellow-400 ${
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }
@@ -38,19 +39,20 @@ const Navbar = () => {
       <NavLink
         to="/borrow-summary"
         className={({ isActive }) =>
-          `block py-2 px-4 rounded transition text-white hover:text-black ${
+          `block py-2 px-4 rounded transition text-white hover:text-yellow-400 ${
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }
       >
         Borrow Summary
       </NavLink>
-    </div>
+    </>
   );
+
   return (
-    <nav className="sticky top-0 z-50 bg-gray-500 bg-opacity-95 ">
+    <nav className="sticky top-0 z-50 bg-gray-500 bg-opacity-95">
       <div className="w-[95%] mx-auto px-4">
-        <div className="flex  items-center justify-between h-16">
+        <div className="flex items-center justify-between h-16">
           {/* Logo */}
           <div className="flex items-center">
             <Link
@@ -61,10 +63,11 @@ const Navbar = () => {
             </Link>
           </div>
 
-          <div>{navLinks}</div>
+          {/* Desktop/Tablet Nav */}
+          <div className="hidden md:flex gap-2">{navLinks}</div>
 
-          {/* Hamburger/Cross - mobile only */}
-          <div className="flex md:hidden justify-end col-span-2">
+          {/* Hamburger - mobile only */}
+          <div className="flex md:hidden">
             <button
               className="text-gray-200 focus:outline-none"
               onClick={() => setMenuOpen(!menuOpen)}
