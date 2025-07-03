@@ -1,53 +1,58 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
+import { useParams, useNavigate } from "react-router";
+import {
+  useGetBookQuery,
+  useUpdateBookMutation,
+} from "../redux/features/Books/bookApi";
 import type { IBook } from "../interfaces/book.interface";
-import { useCreateBookMutation } from "../redux/features/Books/bookApi";
 import Swal from "sweetalert2";
-import { useNavigate } from "react-router";
 
-const CreateBook = () => {
-  const [createBook] = useCreateBookMutation();
+const UpdateBook = () => {
+  const { id } = useParams<{ id: string }>();
   const navigate = useNavigate();
+  const { data, isLoading } = useGetBookQuery(id, { skip: !id });
+  const [updateBook] = useUpdateBookMutation();
+
   const {
     register,
     handleSubmit,
     reset,
     formState: { errors },
-  } = useForm<IBook>();
-  const onSubmit: SubmitHandler<IBook> = async (data) => {
-    const result = await createBook(data);
-    if (result.data.success) {
+  } = useForm<IBook>({
+    defaultValues: data?.data,
+    values: data?.data,
+  });
+
+  const onSubmit: SubmitHandler<IBook> = async (formData) => {
+    if (!id) return;
+    const result = await updateBook({ id, payload: formData });
+    if (result.data?.success) {
       Swal.fire({
-        position: "top-end",
         icon: "success",
-        title: "Book Created successfully.",
-        showConfirmButton: false,
+        title: "Book updated successfully!",
         timer: 1500,
+        showConfirmButton: false,
       });
       navigate("/books");
       reset();
-    } else {
-      Swal.fire({
-        icon: "error",
-        title: "Oops...",
-        text: `Something went wrong!${errors}`,
-      });
     }
   };
 
+  if (isLoading) return <div>Loading...</div>;
+
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-200">
-      <div className="bg-gray-400 shadow-lg rounded-lg p-8 w-1/2">
-        <h2 className="text-2xl font-bold mb-6 text-center">Create Book</h2>
+    <div className="min-h-screen flex items-center justify-center bg-gray-100">
+      <div className="bg-white shadow-lg rounded-lg p-8 w-full max-w-md">
+        <h2 className="text-2xl font-bold mb-6 text-center">Update Book</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div>
             <label className="label">
-              <span className="label-text">Title*</span>
+              <span className="label-text">Title</span>
             </label>
             <input
               type="text"
               {...register("title", { required: true })}
               className="input input-bordered w-full"
-              placeholder="Enter book title"
             />
             {errors.title && (
               <span className="text-red-500 text-sm">Title is required</span>
@@ -55,13 +60,12 @@ const CreateBook = () => {
           </div>
           <div>
             <label className="label">
-              <span className="label-text">Author*</span>
+              <span className="label-text">Author</span>
             </label>
             <input
               type="text"
               {...register("author", { required: true })}
               className="input input-bordered w-full"
-              placeholder="Enter the author name"
             />
             {errors.author && (
               <span className="text-red-500 text-sm">Author is required</span>
@@ -69,12 +73,12 @@ const CreateBook = () => {
           </div>
           <div>
             <label className="label">
-              <span className="label-text">Genre*</span>
+              <span className="label-text">Genre</span>
             </label>
             <select
               {...register("genre", { required: true })}
               className="select select-bordered w-full"
-              defaultValue="Select Genre"
+              defaultValue={data?.data?.genre || ""}
             >
               <option value="" disabled>
                 Select genre
@@ -91,45 +95,39 @@ const CreateBook = () => {
           </div>
           <div>
             <label className="label">
-              <span className="label-text">ISBN*</span>
+              <span className="label-text">ISBN</span>
             </label>
             <input
               type="text"
               {...register("isbn", { required: true })}
               className="input input-bordered w-full"
-              placeholder="Enter book's isbn number"
             />
             {errors.isbn && (
-              <span className="text-red-500 text-sm">ISBN must be unique</span>
+              <span className="text-red-500 text-sm">ISBN is required</span>
             )}
           </div>
-
           <div>
             <label className="label">
-              <span className="label-text">Copies*</span>
+              <span className="label-text">Copies</span>
             </label>
             <input
               type="number"
               min={1}
               {...register("copies", { required: true, min: 1 })}
               className="input input-bordered w-full"
-              placeholder="Enter Copies number"
             />
             {errors.copies && (
-              <span className="text-red-500 text-sm">
-                Copies value must be more than 0
-              </span>
+              <span className="text-red-500 text-sm">Copies is required</span>
             )}
           </div>
           <div>
             <label className="label">
-              <span className="label-text">Description*</span>
+              <span className="label-text">Description</span>
             </label>
             <textarea
               {...register("description", { required: true })}
               className="textarea textarea-bordered w-full"
               rows={4}
-              placeholder="Enter book description"
             />
             {errors.description && (
               <span className="text-red-500 text-sm">
@@ -138,11 +136,12 @@ const CreateBook = () => {
             )}
           </div>
           <button type="submit" className="btn btn-primary w-full mt-4">
-            Create Book
+            Update Book
           </button>
         </form>
       </div>
     </div>
   );
 };
-export default CreateBook;
+
+export default UpdateBook;

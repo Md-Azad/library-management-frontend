@@ -62,7 +62,12 @@ const BookCard: React.FC<BookRowProps> = ({ book }) => {
           >
             Details
           </Link>
-          <div className="badge badge-outline bg-yellow-500">Edit</div>
+          <Link
+            to={`/edit-book/${book._id}`}
+            className="badge badge-outline bg-yellow-500"
+          >
+            Edit
+          </Link>
           <button
             onClick={() => handleDelete(book._id as string)}
             className="btn btn-sm bg-red-600"
