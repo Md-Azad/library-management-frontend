@@ -10,10 +10,10 @@ const SummaryTable: React.FC<SummaryTableProps> = ({ summary, index }) => {
   const { title, isbn } = summary.book;
   return (
     <tr>
-      <th>{index + 1}</th>
+      <th className="hidden sm:table-cell">{index + 1}</th>
       <td>{title}</td>
       <td>{isbn}</td>
-      <td>{totalQuantity}</td>
+      <td className="text-center lg:text-left">{totalQuantity}</td>
     </tr>
   );
 };
