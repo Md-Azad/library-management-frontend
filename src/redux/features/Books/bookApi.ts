@@ -30,6 +30,31 @@ export const bookApi = createApi({
         body: payload,
       }),
       invalidatesTags: ["books"],
+      async onQueryStarted({ id, payload }, { dispatch, queryFulfilled }) {
+        // Optimistically update the cache
+        const patchResult = dispatch(
+          bookApi.util.updateQueryData(
+            "getBooks",
+            { params: undefined },
+            (draft) => {
+              if (draft?.data) {
+                const index = draft.data.findIndex(
+                  (book: IBook) => book._id === id
+                );
+                if (index !== -1) {
+                  draft.data[index] = { ...draft.data[index], ...payload };
+                }
+              }
+            }
+          )
+        );
+        try {
+          await queryFulfilled;
+        } catch {
+          // Rollback if the request fails
+          patchResult.undo();
+        }
+      },
     }),
     deleteBook: builder.mutation({
       query: (id) => ({
@@ -37,6 +62,26 @@ export const bookApi = createApi({
         method: "DELETE",
       }),
       invalidatesTags: ["books"],
+      async onQueryStarted(id, { dispatch, queryFulfilled }) {
+        const patchResult = dispatch(
+          bookApi.util.updateQueryData(
+            "getBooks",
+            { params: undefined },
+            (draft) => {
+              if (draft?.data) {
+                draft.data = draft.data.filter(
+                  (book: IBook) => book._id !== id
+                );
+              }
+            }
+          )
+        );
+        try {
+          await queryFulfilled;
+        } catch {
+          patchResult.undo();
+        }
+      },
     }),
   }),
 });
