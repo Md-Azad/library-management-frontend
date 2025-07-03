@@ -4,7 +4,8 @@ import { Link, NavLink } from "react-router";
 const Navbar = () => {
   const [menuOpen, setMenuOpen] = useState(false);
 
-  const navLinks = (
+  // Pass setMenuOpen(false) to close menu on mobile link click
+  const navLinks = (onLinkClick?: () => void) => (
     <>
       <NavLink
         to="/"
@@ -13,6 +14,7 @@ const Navbar = () => {
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }
+        onClick={onLinkClick}
       >
         Home
       </NavLink>
@@ -23,6 +25,7 @@ const Navbar = () => {
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }
+        onClick={onLinkClick}
       >
         AllBooks
       </NavLink>
@@ -33,6 +36,7 @@ const Navbar = () => {
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }
+        onClick={onLinkClick}
       >
         Add Book
       </NavLink>
@@ -43,6 +47,7 @@ const Navbar = () => {
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }
+        onClick={onLinkClick}
       >
         Borrow Summary
       </NavLink>
@@ -64,7 +69,7 @@ const Navbar = () => {
           </div>
 
           {/* Desktop/Tablet Nav */}
-          <div className="hidden md:flex gap-2">{navLinks}</div>
+          <div className="hidden md:flex gap-2">{navLinks()}</div>
 
           {/* Hamburger - mobile only */}
           <div className="flex md:hidden">
@@ -124,7 +129,7 @@ const Navbar = () => {
           onClick={(e) => e.stopPropagation()}
         >
           <div className="flex flex-col items-center py-6 space-y-2">
-            {navLinks}
+            {navLinks(() => setMenuOpen(false))}
           </div>
         </div>
       </div>
