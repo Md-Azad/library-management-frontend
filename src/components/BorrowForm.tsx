@@ -29,8 +29,8 @@ const BorrowForm = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-100 ">
-      <div className="bg-white shadow-lg rounded-lg pt-2 w-full  ">
+    <div className="flex items-center justify-center bg-gray-300 pb-4 ">
+      <div className="bg-gray-400 shadow-lg rounded-lg mt-4 pt-2 mx-auto w-11/12 lg:w-1/2 p-8 ">
         <h2 className="text-2xl font-bold mb-6 text-center text-red-400">
           Borrow Book
         </h2>

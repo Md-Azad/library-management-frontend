@@ -5,13 +5,13 @@ const Details = () => {
   const { id } = useParams<{ id: string }>();
 
   const { data, isLoading } = useGetBookQuery(id);
-  console.log(data.data);
+
   if (isLoading) {
     return <h1>Loading</h1>;
   }
-  const { title, author, genre, avilable, isbn, description } = data.data;
+  const { title, author, genre, avilable, description } = data.data;
   return (
-    <div className="card bg-gray-200 w-1/2 shadow-sm my-8 mx-auto">
+    <div className="card bg-gray-200 w-11/12 lg:w-1/2 shadow-sm my-8 mx-auto">
       <figure>
         <h1 className="text-7xl text-orange-400">{title}</h1>
       </figure>
