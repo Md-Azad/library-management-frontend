@@ -1,6 +1,7 @@
 import { Link } from "react-router";
 import type { IBook } from "../interfaces/book.interface";
 import { useDeleteBookMutation } from "../redux/features/Books/bookApi";
+import Swal from "sweetalert2";
 type BookRowProps = {
   book: IBook;
 };
@@ -9,9 +10,27 @@ const BookCard: React.FC<BookRowProps> = ({ book }) => {
   const { title, author, genre, isbn, avilable, copies } = book;
   const [deleteBook] = useDeleteBookMutation();
 
-  const handleDelete = async (id: string) => {
-    const result = await deleteBook(id);
-    console.log(result);
+  const handleDelete = (id: string) => {
+    Swal.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonColor: "#3085d6",
+      cancelButtonColor: "#d33",
+      confirmButtonText: "Yes, delete it!",
+    }).then(async (result) => {
+      if (result.isConfirmed) {
+        const result = await deleteBook(id);
+        if (result.data.success) {
+          Swal.fire({
+            title: "Deleted!",
+            text: "The book has been deleted.",
+            icon: "success",
+          });
+        }
+      }
+    });
   };
   return (
     <div className="card bg-gray-400 shadow-sm">

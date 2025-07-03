@@ -28,18 +28,11 @@ export const bookApi = createApi({
         method: "DELETE",
       }),
     }),
-    borroBook: builder.mutation({
-      query: ({ id, payload }: { id: string; payload: Inputs }) => ({
-        url: `/borrow/${id}`,
-        method: "POST",
-        body: payload,
-      }),
-    }),
-    // joinEvent: builder.mutation({
-    //   query: ({ eventId, email }) => ({
-    //     url: `/events/join/${eventId}`,
-    //     method: "PATCH",
-    //     body: { email },
+    // borroBook: builder.mutation({
+    //   query: ({ id, payload }: { id: string; payload: Inputs }) => ({
+    //     url: `/borrow/${id}`,
+    //     method: "POST",
+    //     body: payload,
     //   }),
     // }),
   }),

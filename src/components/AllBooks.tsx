@@ -4,7 +4,7 @@ import BookCard from "./BookCard";
 
 const AllBooks = () => {
   const { data, isLoading } = useGetBooksQuery(undefined);
-  console.log(data);
+
   if (isLoading) {
     return <h1>Loading...</h1>;
   }

@@ -1,17 +1,34 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
 import type { IBook } from "../interfaces/book.interface";
 import { useCreateBookMutation } from "../redux/features/Books/bookApi";
+import Swal from "sweetalert2";
 
 const CreateBook = () => {
   const [createBook] = useCreateBookMutation();
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm<IBook>();
   const onSubmit: SubmitHandler<IBook> = async (data) => {
     const result = await createBook(data);
-    console.log(result);
+    if (result.data.success) {
+      Swal.fire({
+        position: "top-end",
+        icon: "success",
+        title: "Book Created successfully.",
+        showConfirmButton: false,
+        timer: 1500,
+      });
+      reset();
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: `Something went wrong!${errors}`,
+      });
+    }
   };
 
   return (
