@@ -2,11 +2,7 @@ import { useForm, type SubmitHandler } from "react-hook-form";
 import { useParams } from "react-router";
 import type { Inputs } from "../interfaces/input.interface";
 import { useBorroBookMutation } from "../redux/features/Borrow/borrowApi";
-
-// type Inputs = {
-//   quantity: number;
-//   dueDate: Date;
-// };
+import Swal from "sweetalert2";
 
 const BorrowForm = () => {
   const [borrowBook] = useBorroBookMutation();
@@ -16,11 +12,18 @@ const BorrowForm = () => {
     handleSubmit,
     formState: { errors },
   } = useForm<Inputs>();
-  const onSubmit: SubmitHandler<Inputs> = (data) => {
+  const onSubmit: SubmitHandler<Inputs> = async (data) => {
     if (!id) {
       throw new Error("Book id is missing");
     }
-    borrowBook({ id: id, payload: data });
+    const result = await borrowBook({ id: id, payload: data });
+    if (result.data.success) {
+      Swal.fire({
+        title: "Borrowed!",
+        text: "Your book has been borrowed.",
+        icon: "success",
+      });
+    }
   };
 
   return (
