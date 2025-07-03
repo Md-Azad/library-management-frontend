@@ -5,7 +5,7 @@ import BookCard from "./BookCard";
 
 const Home = () => {
   const { data, isLoading } = useGetBooksQuery({
-    params: "?sortBy=createdAt&sort=desc&limit=5",
+    params: "?sortBy=createdAt&sort=desc&limit=4",
   });
 
   if (isLoading) {

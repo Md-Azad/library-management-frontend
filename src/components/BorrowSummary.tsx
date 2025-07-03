@@ -17,7 +17,7 @@ const BorrowSummary = () => {
             <th>Serial No</th>
             <th>Book Title</th>
             <th>ISBN</th>
-            <th>Total Borroed</th>
+            <th>Total Borrowed</th>
           </tr>
         </thead>
         <tbody>

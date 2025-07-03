@@ -1,69 +1,63 @@
-# React + TypeScript + Vite
+# 📚 Library Management System
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A modern, full-featured Library Management System built with React, TypeScript, Vite, Tailwind CSS, DaisyUI, and Redux Toolkit Query.  
+Easily manage books, borrowing, and summaries with a beautiful and responsive UI.
 
-Currently, two official plugins are available:
+[🌐 Live Demo](https://library-management-frontend.vercel.app/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+## 🚀 Features
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+- **Book Management:** Add, edit, delete, and view books with detailed information.
+- **Borrowing System:** Borrow books with due dates and quantity selection.
+- **Borrow Summary:** View a summary of all borrowed books.
+- **Search & Sort:** Quickly find and sort books by various criteria.
+- **Responsive UI:** Clean, mobile-friendly design using Tailwind CSS & DaisyUI.
+- **Animated Banner:** Engaging, animated landing banner for a modern look.
+- **API Integration:** Real-time data fetching and mutation with Redux Toolkit Query.
+- **User Feedback:** SweetAlert2 for beautiful notifications and confirmations.
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+---
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+## 🛠️ Installation
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+1. **Clone the repository:**
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+   ```bash
+   git clone https://github.com/your-username/library-management-frontend.git
+   cd library-management-frontend
+   ```
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+2. **Install dependencies:**
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
-```
+   ```bash
+   npm install
+   ```
+
+3. **Start the development server:**
+
+   ```bash
+   npm run dev
+   ```
+
+4. **Open in your browser:**
+   ```
+   http://localhost:5173
+   ```
+
+---
+
+## 🌟 Future Updates
+
+- User authentication and roles (admin, member)
+- Book cover image upload
+- Advanced search and filtering
+- Pagination for large book lists
+- Dark mode support
+- Export/print borrow summaries
+- Improved accessibility
+
+---
+
+\*\*Made with ❤️ by Azad
