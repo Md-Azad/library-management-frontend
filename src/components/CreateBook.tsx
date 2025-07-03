@@ -35,8 +35,8 @@ const CreateBook = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center bg-gray-200">
-      <div className="bg-gray-400 shadow-lg rounded-lg p-8 w-1/2">
+    <div className="min-h-screen flex items-center justify-center bg-gray-200 ">
+      <div className="bg-gray-400 shadow-lg rounded-lg px-4 pb-4 my-2 w-11/12 lg:w-1/2  ">
         <h2 className="text-2xl font-bold mb-6 text-center">Create Book</h2>
         <form onSubmit={handleSubmit(onSubmit)} className="flex flex-col gap-4">
           <div>

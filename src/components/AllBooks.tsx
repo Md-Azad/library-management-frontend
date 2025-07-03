@@ -9,7 +9,7 @@ const AllBooks = () => {
     return <h1>Loading...</h1>;
   }
   return (
-    <div className="grid grid-cols-4 my-8 gap-4 mx-12">
+    <div className="grid lg:grid-cols-4 md:grid-cols-2 sm:grid-cols-1 my-4 gap-4 mx-2">
       {data &&
         Array.isArray(data.data) &&
         data.data.map((book: IBook) => (
