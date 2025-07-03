@@ -14,10 +14,10 @@ const Home = () => {
   return (
     <div>
       <Banner />
-      <h1 className="text-5xl text-pink-500 font-bold text-center">
+      <h1 className="text-5xl text-pink-500 font-bold text-center mt-2">
         New Books
       </h1>
-      <div className="grid grid-cols-4 my-8 gap-4 mx-12">
+      <div className="grid lg:grid-cols-4 my-8 gap-4 mx-2 md:grid-cols-1 sm:grid-cols-1 sm:mx-2">
         {data &&
           Array.isArray(data.data) &&
           data.data.map((book: IBook) => (

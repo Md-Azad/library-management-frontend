@@ -43,7 +43,7 @@ const BookCard: React.FC<BookRowProps> = ({
     });
   };
   return (
-    <div className="card bg-gray-400 shadow-sm">
+    <div className="card bg-gray-400 shadow-sm  ">
       <figure>
         <h1 className="text-4xl text-orange-500">{title}</h1>
       </figure>
