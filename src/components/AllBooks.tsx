@@ -9,10 +9,19 @@ const AllBooks = () => {
     return <h1>Loading...</h1>;
   }
   return (
-    <div className="grid grid-cols-3 my-8 gap-4 mx-12">
+    <div className="grid grid-cols-4 my-8 gap-4 mx-12">
       {data &&
         Array.isArray(data.data) &&
-        data.data.map((book: IBook) => <BookCard key={book._id} book={book} />)}
+        data.data.map((book: IBook) => (
+          <BookCard
+            key={book._id}
+            book={book}
+            edit="edit"
+            deleteAction="delete"
+            borrow="borrow"
+            details="details"
+          />
+        ))}
     </div>
   );
 };

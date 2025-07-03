@@ -1,5 +1,5 @@
 import { useForm, type SubmitHandler } from "react-hook-form";
-import { useParams } from "react-router";
+import { useNavigate, useParams } from "react-router";
 import type { Inputs } from "../interfaces/input.interface";
 import { useBorroBookMutation } from "../redux/features/Borrow/borrowApi";
 import Swal from "sweetalert2";
@@ -7,6 +7,7 @@ import Swal from "sweetalert2";
 const BorrowForm = () => {
   const [borrowBook] = useBorroBookMutation();
   const { id } = useParams<{ id: string }>();
+  const navigate = useNavigate();
   const {
     register,
     handleSubmit,
@@ -23,6 +24,7 @@ const BorrowForm = () => {
         text: "Your book has been borrowed.",
         icon: "success",
       });
+      navigate("/books");
     }
   };
 

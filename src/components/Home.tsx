@@ -5,7 +5,7 @@ import BookCard from "./BookCard";
 
 const Home = () => {
   const { data, isLoading } = useGetBooksQuery({
-    params: "?sortBy=createdAt&sort=desc&limit=2",
+    params: "?sortBy=createdAt&sort=desc&limit=5",
   });
 
   if (isLoading) {
@@ -17,11 +17,16 @@ const Home = () => {
       <h1 className="text-5xl text-pink-500 font-bold text-center">
         New Books
       </h1>
-      <div className="grid grid-cols-3 my-8 gap-4 mx-12">
+      <div className="grid grid-cols-4 my-8 gap-4 mx-12">
         {data &&
           Array.isArray(data.data) &&
           data.data.map((book: IBook) => (
-            <BookCard key={book._id} book={book} />
+            <BookCard
+              key={book._id}
+              book={book}
+              details={"details"}
+              borrow={"borrow"}
+            />
           ))}
       </div>
     </div>

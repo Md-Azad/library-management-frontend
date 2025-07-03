@@ -4,9 +4,19 @@ import { useDeleteBookMutation } from "../redux/features/Books/bookApi";
 import Swal from "sweetalert2";
 type BookRowProps = {
   book: IBook;
+  details?: string;
+  edit?: string;
+  borrow?: string;
+  deleteAction?: string;
 };
 
-const BookCard: React.FC<BookRowProps> = ({ book }) => {
+const BookCard: React.FC<BookRowProps> = ({
+  book,
+  details = null,
+  edit = null,
+  borrow = null,
+  deleteAction = null,
+}) => {
   const { title, author, genre, isbn, avilable, copies } = book;
   const [deleteBook] = useDeleteBookMutation();
 
@@ -35,7 +45,7 @@ const BookCard: React.FC<BookRowProps> = ({ book }) => {
   return (
     <div className="card bg-gray-400 shadow-sm">
       <figure>
-        <h1 className="text-8xl text-orange-500">{title}</h1>
+        <h1 className="text-4xl text-orange-500">{title}</h1>
       </figure>
       <div className="card-body">
         <h2 className="card-title">
@@ -50,30 +60,29 @@ const BookCard: React.FC<BookRowProps> = ({ book }) => {
         <p>ISBN : {isbn}</p>
 
         <div className="card-actions justify-end">
-          <Link
-            to={`/borrow/${book._id}`}
-            className="badge badge-outline bg-green-700"
-          >
-            Borrow
-          </Link>
-          <Link
-            to={`/books/${book._id}`}
-            className="badge badge-outline bg-pink-900"
-          >
-            Details
-          </Link>
-          <Link
-            to={`/edit-book/${book._id}`}
-            className="badge badge-outline bg-yellow-500"
-          >
-            Edit
-          </Link>
-          <button
-            onClick={() => handleDelete(book._id as string)}
-            className="btn btn-sm bg-red-600"
-          >
-            Delete
-          </button>
+          {borrow && (
+            <Link to={`/borrow/${book._id}`}>
+              <button className="btn btn-sm bg-green-700">Borrow</button>
+            </Link>
+          )}
+          {details && (
+            <Link to={`/books/${book._id}`}>
+              <button className="btn btn-sm bg-pink-400">Details</button>
+            </Link>
+          )}
+          {edit && (
+            <Link to={`/edit-book/${book._id}`}>
+              <button className="btn btn-sm bg-yellow-500">Edit</button>
+            </Link>
+          )}
+          {deleteAction && (
+            <button
+              onClick={() => handleDelete(book._id as string)}
+              className="btn btn-sm bg-red-600"
+            >
+              Delete
+            </button>
+          )}
         </div>
       </div>
     </div>

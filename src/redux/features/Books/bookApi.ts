@@ -6,10 +6,11 @@ export const bookApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://library-management-api-ebon.vercel.app/api",
   }),
-  tagTypes: ["createEvents"],
+  tagTypes: ["books"],
   endpoints: (builder) => ({
     getBooks: builder.query({
       query: ({ params }) => `/books${params ?? ""}`,
+      providesTags: ["books"],
     }),
     getBook: builder.query({
       query: (id) => `/books/${id}`,
@@ -20,6 +21,7 @@ export const bookApi = createApi({
         method: "POST",
         body: payload,
       }),
+      invalidatesTags: ["books"],
     }),
     updateBook: builder.mutation({
       query: ({ id, payload }) => ({
@@ -27,12 +29,14 @@ export const bookApi = createApi({
         method: "PATCH",
         body: payload,
       }),
+      invalidatesTags: ["books"],
     }),
     deleteBook: builder.mutation({
       query: (id) => ({
         url: `/books/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["books"],
     }),
   }),
 });

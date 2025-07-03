@@ -6,7 +6,7 @@ export const borrowApi = createApi({
   baseQuery: fetchBaseQuery({
     baseUrl: "https://library-management-api-ebon.vercel.app/api",
   }),
-  tagTypes: ["createEvents"],
+  tagTypes: ["books"],
   endpoints: (builder) => ({
     getSummary: builder.query({
       query: () => "/borrow/borrow-summary",
@@ -18,6 +18,7 @@ export const borrowApi = createApi({
         method: "POST",
         body: payload,
       }),
+      invalidatesTags: ["books"],
     }),
   }),
 });
