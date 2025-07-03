@@ -10,7 +10,7 @@ const Navbar = () => {
       <NavLink
         to="/"
         className={({ isActive }) =>
-          `block py-2 px-4 rounded transition text-white hover:text-yellow-400 ${
+          `block py-2 px-4 rounded transition text-white  ${
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }
@@ -21,7 +21,7 @@ const Navbar = () => {
       <NavLink
         to="/books"
         className={({ isActive }) =>
-          `block py-2 px-4 rounded transition text-white hover:text-yellow-400 ${
+          `block py-2 px-4 rounded transition text-white  ${
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }
@@ -32,7 +32,7 @@ const Navbar = () => {
       <NavLink
         to="/create-book"
         className={({ isActive }) =>
-          `block py-2 px-4 rounded transition text-white hover:text-yellow-400 ${
+          `block py-2 px-4 rounded transition text-white  ${
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }
@@ -43,7 +43,7 @@ const Navbar = () => {
       <NavLink
         to="/borrow-summary"
         className={({ isActive }) =>
-          `block py-2 px-4 rounded transition text-white hover:text-yellow-400 ${
+          `block py-2 px-4 rounded transition text-white  ${
             isActive ? "bg-yellow-400 text-gray-900 font-bold" : ""
           }`
         }

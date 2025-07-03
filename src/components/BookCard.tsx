@@ -50,35 +50,44 @@ const BookCard: React.FC<BookRowProps> = ({
       <div className="card-body">
         <h2 className="card-title">
           {title}
-          <div className="badge badge-secondary">
-            {avilable ? "Available" : "Not Available"}
+          <div
+            className={`badge badge-info ${
+              avilable ? "" : "text-white bg-red-700"
+            }`}
+          >
+            {avilable ? `Available-${copies} pc` : "Not Available"}
           </div>
-          <div className="badge badge-secondary">{copies}</div>
         </h2>
         <p>Author: {author}</p>
         <p>Genre: {genre}</p>
         <p>ISBN : {isbn}</p>
 
         <div className="card-actions justify-end">
-          {borrow && (
+          {borrow && book.avilable && (
             <Link to={`/borrow/${book._id}`}>
-              <button className="btn btn-sm bg-green-700">Borrow</button>
+              <button className="btn btn-sm bg-gray-600 text-yellow-300">
+                Borrow
+              </button>
             </Link>
           )}
           {details && (
             <Link to={`/books/${book._id}`}>
-              <button className="btn btn-sm bg-pink-400">Details</button>
+              <button className="btn btn-sm bg-gray-600 text-yellow-300">
+                Details
+              </button>
             </Link>
           )}
           {edit && (
             <Link to={`/edit-book/${book._id}`}>
-              <button className="btn btn-sm bg-yellow-500">Edit</button>
+              <button className="btn btn-sm bg-gray-600 text-yellow-300">
+                Edit
+              </button>
             </Link>
           )}
           {deleteAction && (
             <button
               onClick={() => handleDelete(book._id as string)}
-              className="btn btn-sm bg-red-600"
+              className="btn btn-sm bg-gray-600 text-yellow-300"
             >
               Delete
             </button>

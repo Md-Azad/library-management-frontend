@@ -1,5 +1,6 @@
 import { createApi, fetchBaseQuery } from "@reduxjs/toolkit/query/react";
 import type { Inputs } from "../../../interfaces/input.interface";
+import { bookApi } from "../Books/bookApi";
 
 export const borrowApi = createApi({
   reducerPath: "borrowApi",
@@ -18,7 +19,15 @@ export const borrowApi = createApi({
         method: "POST",
         body: payload,
       }),
-      invalidatesTags: ["books"],
+      async onQueryStarted(_, { dispatch, queryFulfilled }) {
+        try {
+          await queryFulfilled;
+          // Invalidate the books tag in bookApi after successful borrow
+          dispatch(bookApi.util.invalidateTags(["books"]));
+        } catch {
+          console.log("something went wrong");
+        }
+      },
     }),
   }),
 });

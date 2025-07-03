@@ -25,6 +25,12 @@ const BorrowForm = () => {
         icon: "success",
       });
       navigate("/books");
+    } else {
+      Swal.fire({
+        icon: "error",
+        title: "Oops...",
+        text: "Request for too many books",
+      });
     }
   };
 
