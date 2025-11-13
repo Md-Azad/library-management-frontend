@@ -4,8 +4,8 @@ import type { IBook } from "../../../interfaces/book.interface";
 export const bookApi = createApi({
   reducerPath: "bookApi",
   baseQuery: fetchBaseQuery({
-    baseUrl: "https://library-management-api-ebon.vercel.app/api",
-    // baseUrl: "http://localhost:8000/api",
+    // baseUrl: "https://library-management-api-ebon.vercel.app/api",
+    baseUrl: "http://localhost:5000/api",
   }),
   tagTypes: ["books"],
   endpoints: (builder) => ({
